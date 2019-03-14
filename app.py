@@ -63,7 +63,7 @@ def jsonified_tobs():
         filter(Measurement.date >= one_year_ago).\
         order_by(Measurement.date).all()
 
-    tobs_data= []
+    tobs_data = []
     for tobs in precipitation_data:
         tobs_dict = {}
         tobs_dict["date"] = tobs.date
@@ -75,7 +75,7 @@ def jsonified_tobs():
 @app.route("/api/v1.0/<start>")
 def jsonified_start(start):
   
-    start_date= dt.datetime.strptime(start, '%Y-%m-%d')
+    start_date = dt.datetime.strptime(start, '%Y-%m-%d')
     one_year_ago = dt.timedelta(days=365)
     start = start_date - one_year_ago
     end =  dt.date(2017, 8, 23)
@@ -88,8 +88,8 @@ def jsonified_start(start):
 @app.route("/api/v1.0/<start>/<end>")
 def jsonified_start_end(start,end):
 
-    start_date= dt.datetime.strptime(start, '%Y-%m-%d')
-    end_date= dt.datetime.strptime(end,'%Y-%m-%d')
+    start_date = dt.datetime.strptime(start, '%Y-%m-%d')
+    end_date = dt.datetime.strptime(end,'%Y-%m-%d')
     one_year_ago = dt.timedelta(days=365)
     start = start_date - one_year_ago
     end = end_date - one_year_ago
