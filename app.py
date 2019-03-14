@@ -76,9 +76,9 @@ def jsonified_tobs():
 def jsonified_start(start):
   
     start_date = dt.datetime.strptime(start, '%Y-%m-%d')
-    one_year_ago = dt.timedelta(days=365)
-    start = start_date - one_year_ago
-    end =  dt.date(2017, 8, 23)
+    end_date =  dt.date(2017, 8, 23)
+    start = start_date
+    end =  end_date
     results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
         filter(Measurement.date >= start).filter(Measurement.date <= end).all()
     trip = list(np.ravel(results))
@@ -90,9 +90,8 @@ def jsonified_start_end(start,end):
 
     start_date = dt.datetime.strptime(start, '%Y-%m-%d')
     end_date = dt.datetime.strptime(end,'%Y-%m-%d')
-    one_year_ago = dt.timedelta(days=365)
-    start = start_date - one_year_ago
-    end = end_date - one_year_ago
+    start = start_date
+    end = end_date
     results2 = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
         filter(Measurement.date >= start).filter(Measurement.date <= end).all()
     trip2 = list(np.ravel(results2))
